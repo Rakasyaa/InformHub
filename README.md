@@ -28,6 +28,6 @@ Jika belum punya, unduh dan instal [XAMPP](https://www.apachefriends.org/index.h
 
 ### 5. Jalankan Aplikasi
 
-Buka browser dan akses: http://localhost/projek_web/Login/Login.html
+Buka browser dan akses: http://localhost/forum/index.php
 
 
