@@ -1,4 +1,6 @@
-# Learning Forum Web Application
+
+
+# Inform HUB Web Application
 
 A web forum application similar to Reddit/Facebook communities but focused on learning topics. Users can create posts, comment, upvote/downvote, and follow topic spaces.
 
