@@ -1,33 +1,49 @@
-# Projek - Pemrograman web
+# Learning Forum Web Application
 
-repo bersama projek web (Pliss kerjain biar cepet selesai)
+A web forum application similar to Reddit/Facebook communities but focused on learning topics. Users can create posts, comment, upvote/downvote, and follow topic spaces.
 
-## 🚀 Cara Menjalankan Proyek (dengan XAMPP)
+## Features
 
-### 1. Install XAMPP
+- User authentication (login/register)
+- User roles (regular users and moderators)
+- Home page showing posts from followed topics
+- Search page to find topic spaces
+- Topic spaces with related posts
+- Create posts with text, images, or videos
+- Comment on posts with threaded replies
+- Edit posts and comments
+- Upvote/downvote system
+- Follow/unfollow topic spaces
+- Moderator capabilities (create topic spaces, moderate content)
 
-Jika belum punya, unduh dan instal [XAMPP](https://www.apachefriends.org/index.html).
+## Technologies Used
 
-### 2. Aktifkan Apache & MySQL
+- Frontend: HTML, CSS, JavaScript, Bootstrap 5
+- Backend: PHP
+- Database: MySQL
 
-- Buka **XAMPP Control Panel**
-- Klik **Start** pada **Apache** dan **MySQL**
+## Installation
 
-### 3. Salin Folder Proyek
+1. Clone this repository to your XAMPP htdocs folder
+2. Import the database schema from `database/forum_db.sql`
+3. Configure database connection in `config/database.php`
+4. Access the application through `http://localhost/forum`
 
-- Salin folder `projek_web` ke: C:\xampp\htdocs\
+## Project Structure
 
-### 4. Import Database ke MySQL
+```
+forum/
+├── assets/           # CSS, JS, images
+├── config/           # Configuration files
+├── database/         # Database schema
+├── includes/         # PHP includes
+├── js/               # JavaScript files
+├── pages/            # Page templates
+├── uploads/          # User uploaded content
+├── index.php         # Main entry point
+└── README.md         # This file
+```
 
-1. Buka browser dan pergi ke: http://localhost/phpmyadmin
-2. Klik database tersebut → Tab **Import**
-3. Pilih file `database.sql` dari folder `database/`
-4. Klik **Go**
+## License
 
-> Databse dan Tabel `users` akan otomatis dibuat, beserta beberapa data jika sudah disiapkan.
-
-### 5. Jalankan Aplikasi
-
-Buka browser dan akses: http://localhost/forum/index.php
-
-
+MIT

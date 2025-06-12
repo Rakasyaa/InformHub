@@ -1,0 +1,406 @@
+/* Custom styles for Learning Forum */
+
+/* General styles */
+body {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+}
+
+footer {
+    margin-top: auto;
+}
+
+/* Card styles */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+}
+
+/* Topic card */
+.topic-card {
+    height: 100%;
+}
+
+.topic-card .card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.topic-card .card-text {
+    flex-grow: 1;
+}
+
+/* Post styles */
+.post-card {
+    margin-bottom: 30px;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+}
+
+.post-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.post-meta {
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+.post-content {
+    margin-top: 15px;
+}
+
+.post-image {
+    max-width: 100%;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.post-video {
+    width: 100%;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e9ecef;
+}
+
+.vote-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.vote-count {
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+.upvoted {
+    color: #28a745;
+}
+
+.downvoted {
+    color: #dc3545;
+}
+
+/* Comment styles */
+.comment-section {
+    margin-top: 30px;
+}
+
+.comment-card {
+    margin-bottom: 15px;
+    border-left: 3px solid #007bff;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+}
+
+.comment-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.comment-meta {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+.comment-content {
+    margin-top: 10px;
+}
+
+.comment-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 0.85rem;
+}
+
+.reply-section {
+    margin-left: 40px;
+    margin-top: 15px;
+}
+
+.reply-card {
+    border-left: 2px solid #6c757d;
+}
+
+/* Form styles */
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+/* Profile styles */
+.profile-header {
+    background-color: #f1f8ff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info {
+    margin-left: 20px;
+}
+
+#latest-courses a, .biasa{
+    text-decoration: none;
+    color: inherit;
+}
+
+.stats {
+    flex: 0 1 300px; 
+    box-sizing: border-box;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.stats .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.members {
+    background-color: #e6f4ff; 
+    border: 1px solid #008cff;
+}
+
+.posts {
+    background-color: #fff3e6; 
+    border: 1px solid #7dfc90;
+}
+
+
+.post-image {
+    width: 80%;
+    height: 500px;
+    object-fit: cover;
+    margin-top: 10px;
+}
+
+.Home {
+    position: relative;
+    background: url('../img/banner.jpg') no-repeat center center;
+    background-size: cover;
+    color: white;
+    padding: 200px 0;
+    text-align: center;
+}
+
+.Home-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Home-content h1 {
+    font-size: 3.5rem; 
+    margin-bottom: 20px;
+}
+
+.Home-content p {
+    font-size: 1.25rem; 
+    margin-bottom: 30px;
+}
+
+.Home-buttons .btn {
+    margin: 0 10px;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 30px; 
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ===== Modal Overlay ===== */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.modal-buttons {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.modal-buttons button,
+.modal-buttons a {
+    padding: 0.5rem 1.25rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.modal-buttons button {
+    background: #ccc;
+    color: #333;
+}
+
+.modal-buttons .confirm-button {
+    background: #dc3545;
+    color: white;
+}
+
+/* ===== Modal profil ===== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.edit-avatar {
+    display: block;
+    width: 120px;              /* Ukuran sedang */
+    height: 120px;
+    border-radius: 50%;        /* Bulat */
+    object-fit: cover;         /* Agar gambar tidak terdistorsi */
+    margin: 1rem auto 1.5rem;  /* Tengah dan beri jarak dari label dan bawah */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Opsional: bayangan lembut */
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-info {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+    
+    .post-actions {
+        flex-direction: column;
+    }
+    
+    .vote-buttons {
+        margin-bottom: 10px;
+    }
+}
+
+footer {
+    margin-top: auto;
+}
