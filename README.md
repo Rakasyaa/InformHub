@@ -4,10 +4,10 @@
     <h3>Platform Forum Pembelajaran Interaktif</h3>
     <p>Sebuah platform forum online yang menghubungkan pembelajar dari berbagai latar belakang untuk berbagi pengetahuan, berdiskusi, dan berkolaborasi dalam topik-topik pembelajaran.</p>
 
-    [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-    [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777BB4?logo=php)](https://www.php.net/)
-    [![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql&logoColor=white)](https://www.mysql.com/)
-    [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.2-7952B3?logo=bootstrap)](https://getbootstrap.com/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![PHP](https://img.shields.io/badge/PHP-7.4%2B-777BB4?logo=php)](https://www.php.net/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.2-7952B3?logo=bootstrap)](https://getbootstrap.com/)
 </div>
 
 repo bersama projek web (Pliss kerjain biar cepet selesai)
