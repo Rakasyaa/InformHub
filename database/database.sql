@@ -1,7 +1,7 @@
 -- Database schema for Learning Forum
 -- Create database
-CREATE DATABASE IF NOT EXISTS forum_db;
-USE forum_db;
+CREATE DATABASE IF NOT EXISTS informhub;
+USE informhub;
 
 -- Users table
 CREATE TABLE IF NOT EXISTS users (
