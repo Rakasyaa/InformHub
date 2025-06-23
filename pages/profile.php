@@ -98,7 +98,7 @@ include '../includes/header.php';
                     <div class="profile-info">
                         <h2 class="mb-0"><?php echo $user['username']; ?></h2>
                         <p class="text-muted">
-                            <?php echo $user['is_moderator'] ? '<span class="badge bg-primary me-2">Moderator</span>' : ''; ?>
+                            <?php echo $user['role'] ? '<span class="badge bg-primary me-2">Moderator</span>' : ''; ?>
                             Member since <?php echo date('M Y', strtotime($user['created_at'])); ?>
                         </p>
                         <p><?php echo !empty($user['bio']) ? $user['bio'] : 'No bio available.'; ?></p>
@@ -107,12 +107,12 @@ include '../includes/header.php';
                             <button class="btn btn-outline-primary btn-sm" id="openEditProfileBtn">
                                 <i class="fas fa-edit me-1"></i> Edit Profile
                             </button>
-                        <?php elseif (isLoggedIn() && isModerator()): ?>
+                        <?php elseif (isLoggedIn() && isAdmin()): ?>
                             <a href="<?php echo SITE_URL; ?>/pages/toggle_moderator.php?id=<?php echo $userId; ?>" 
-                               class="btn btn-outline-<?php echo $user['is_moderator'] ? 'danger' : 'success'; ?> btn-sm"
-                               onclick="return confirm('Are you sure you want to <?php echo $user['is_moderator'] ? 'remove moderator status from' : 'make'; ?> <?php echo $user['username']; ?> <?php echo $user['is_moderator'] ? '' : 'a moderator'; ?>?');">
-                                <i class="fas fa-<?php echo $user['is_moderator'] ? 'user-minus' : 'user-shield'; ?> me-1"></i> 
-                                <?php echo $user['is_moderator'] ? 'Remove Moderator Status' : 'Make Moderator'; ?>
+                               class="btn btn-outline-<?php echo $user['role'] ? 'danger' : 'success'; ?> btn-sm"
+                               onclick="return confirm('Are you sure you want to <?php echo $user['role'] ? 'remove moderator status from' : 'make'; ?> <?php echo $user['username']; ?> <?php echo $user['role'] ? '' : 'a moderator'; ?>?');">
+                                <i class="fas fa-<?php echo $user['role'] ? 'user-minus' : 'user-shield'; ?> me-1"></i> 
+                                <?php echo $user['role'] ? 'Remove Moderator Status' : 'Make Moderator'; ?>
                             </a>
                         <?php endif; ?>
                     </div>

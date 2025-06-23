@@ -53,7 +53,7 @@ function loginUser($username, $password) {
     }
     
     // Get user from database
-    $sql = "SELECT user_id, username, password, is_moderator FROM users WHERE username = ?";
+    $sql = "SELECT user_id, username, password, role FROM users WHERE username = ?";
     $result = executePreparedStatement($sql, "s", [$username]);
     
     if ($result->num_rows === 1) {
@@ -64,7 +64,7 @@ function loginUser($username, $password) {
             // Set session variables
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['username'];
-            $_SESSION['is_moderator'] = $user['is_moderator'];
+            $_SESSION['role'] = $user['role'];
             
             addSuccess("Login successful");
             return true;
@@ -92,7 +92,7 @@ function logoutUser() {
 
 // Get user by ID
 function getUserById($userId) {
-    $sql = "SELECT user_id, username, email, profile_image, bio, is_moderator, created_at 
+    $sql = "SELECT user_id, username, email, profile_image, bio, role, created_at 
             FROM users WHERE user_id = ?";
     $result = executePreparedStatement($sql, "i", [$userId]);
     
@@ -129,14 +129,14 @@ function toggleModeratorStatus($userId) {
     
     // Get current moderator status
     $user = getUserById($userId);
-    $newStatus = $user['is_moderator'] ? 0 : 1;
+    $newStatus = $user['role'] ? 'user' : 'mod';
     
     // Update moderator status
-    $sql = "UPDATE users SET is_moderator = ? WHERE user_id = ?";
-    $result = executePreparedStatement($sql, "ii", [$newStatus, $userId]);
+    $sql = "UPDATE users SET role = ? WHERE user_id = ?";
+    $result = executePreparedStatement($sql, "si", [$newStatus, $userId]);
     
     if ($result) {
-        $statusText = $newStatus ? "promoted to moderator" : "demoted from moderator";
+        $statusText = $newStatus ? "demoted from moderator" : "promoted to moderator";
         addSuccess("User {$user['username']} has been {$statusText}");
         return true;
     } else {

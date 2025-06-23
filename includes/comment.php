@@ -1,8 +1,4 @@
 <?php
-/**
- * Comment related functions
- */
-// Calculate the path to config.php
 $config_path = __DIR__ . '/../config/config.php';
 require_once $config_path;
 
@@ -133,86 +129,4 @@ function deleteComment($commentId) {
         addError("Failed to delete comment");
         return false;
     }
-}
-
-// Vote on a comment
-function voteComment($userId, $commentId, $voteType) {
-    // Check if user is logged in
-    if (!isLoggedIn()) {
-        addError("You must be logged in to vote");
-        return false;
-    }
-    
-    // Check if comment exists
-    $comment = getCommentById($commentId);
-    if (!$comment) {
-        addError("Comment not found");
-        return false;
-    }
-    
-    // Check if user has already voted on this comment
-    $sql = "SELECT vote_id, vote_type FROM votes 
-            WHERE user_id = ? AND content_type = 'comment' AND content_id = ?";
-    $result = executePreparedStatement($sql, "ii", [$userId, $commentId]);
-    
-    if ($result->num_rows > 0) {
-        $existingVote = $result->fetch_assoc();
-        
-        // If same vote type, remove vote
-        if ($existingVote['vote_type'] === $voteType) {
-            $sql = "DELETE FROM votes WHERE vote_id = ?";
-            executePreparedStatement($sql, "i", [$existingVote['vote_id']]);
-            
-            // Update comment vote count
-            updateCommentVoteCount($commentId);
-            
-            addSuccess("Vote removed");
-            return true;
-        } else {
-            // If different vote type, update vote
-            $sql = "UPDATE votes SET vote_type = ? WHERE vote_id = ?";
-            executePreparedStatement($sql, "si", [$voteType, $existingVote['vote_id']]);
-            
-            // Update comment vote count
-            updateCommentVoteCount($commentId);
-            
-            addSuccess("Vote updated");
-            return true;
-        }
-    } else {
-        // Insert new vote
-        $sql = "INSERT INTO votes (user_id, content_type, content_id, vote_type) 
-                VALUES (?, 'comment', ?, ?)";
-        $result = executePreparedStatement($sql, "iis", [$userId, $commentId, $voteType]);
-        
-        if ($result) {
-            // Update comment vote count
-            updateCommentVoteCount($commentId);
-            
-            addSuccess("Vote added");
-            return true;
-        } else {
-            addError("Failed to vote");
-            return false;
-        }
-    }
-}
-
-// Update comment vote count
-function updateCommentVoteCount($commentId) {
-    // Count upvotes
-    $sql = "SELECT COUNT(*) as count FROM votes 
-            WHERE content_type = 'comment' AND content_id = ? AND vote_type = 'upvote'";
-    $result = executePreparedStatement($sql, "i", [$commentId]);
-    $upvotes = $result->fetch_assoc()['count'];
-    
-    // Count downvotes
-    $sql = "SELECT COUNT(*) as count FROM votes 
-            WHERE content_type = 'comment' AND content_id = ? AND vote_type = 'downvote'";
-    $result = executePreparedStatement($sql, "i", [$commentId]);
-    $downvotes = $result->fetch_assoc()['count'];
-    
-    // Update comment
-    $sql = "UPDATE comments SET upvotes = ?, downvotes = ? WHERE comment_id = ?";
-    executePreparedStatement($sql, "iii", [$upvotes, $downvotes, $commentId]);
 }

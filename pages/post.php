@@ -130,7 +130,7 @@ include __DIR__ . '/../includes/header.php';
                     </div>
                     
                     <div>
-                        <?php if (isLoggedIn() && ($post['user_id'] == $_SESSION['user_id'] || isModerator())): ?>
+                        <?php if (isLoggedIn() && ($post['user_id'] == $_SESSION['user_id'] || isAdmin() || isModerator())): ?>
                             <a href="<?php echo SITE_URL; ?>/pages/edit_post.php?id=<?php echo $post['post_id']; ?>" class="btn btn-sm btn-outline-secondary ms-1">
                                 <i class="fas fa-edit me-1"></i> Edit
                             </a>
@@ -202,46 +202,23 @@ include __DIR__ . '/../includes/header.php';
                             
                             <div class="comment-actions">
                                 <div class="vote-buttons">
-                                    <?php 
-                                    $commentUserVote = '';
-                                    if (isLoggedIn()) {
-                                        $sql = "SELECT vote_type FROM votes 
-                                                WHERE user_id = ? AND content_type = 'comment' AND content_id = ?";
-                                        $result = executePreparedStatement($sql, "ii", [$_SESSION['user_id'], $comment['comment_id']]);
-                                        if ($result->num_rows > 0) {
-                                            $commentUserVote = $result->fetch_assoc()['vote_type'];
-                                        }
-                                    }
-                                    ?>
-                                    <button class="btn btn-sm <?php echo $commentUserVote === 'upvote' ? 'upvoted' : ''; ?> comment-vote-btn" 
-                                            id="comment-<?php echo $comment['comment_id']; ?>-upvote"
-                                            data-comment-id="<?php echo $comment['comment_id']; ?>" 
-                                            data-vote-type="upvote" 
-                                            <?php echo !isLoggedIn() ? 'disabled' : ''; ?>>
-                                        <i class="fas fa-arrow-up"></i>
+                                    <button class="btn btn-sm comment-vote-btn">
+                                        <i class="fas fa-arrow-up"></i> 
                                     </button>
-                                    
-                                    <span class="vote-count" id="comment-<?php echo $comment['comment_id']; ?>-votes">
-                                        <?php echo $comment['upvotes'] - $comment['downvotes']; ?>
-                                    </span>
-                                    
-                                    <button class="btn btn-sm <?php echo $commentUserVote === 'downvote' ? 'downvoted' : ''; ?> comment-vote-btn" 
-                                            id="comment-<?php echo $comment['comment_id']; ?>-downvote"
-                                            data-comment-id="<?php echo $comment['comment_id']; ?>" 
-                                            data-vote-type="downvote" 
-                                            <?php echo !isLoggedIn() ? 'disabled' : ''; ?>>
+                                    <span>0</span>
+                                    <button class="btn btn-sm comment-vote-btn">
                                         <i class="fas fa-arrow-down"></i>
                                     </button>
                                 </div>
                                 
                                 <div>
                                     <?php if (isLoggedIn()): ?>
-                                        <button class="btn btn-sm btn-link reply-btn" data-comment-id="<?php echo $comment['comment_id']; ?>">
+                                        <button class="btn btn-sm btn-link">
                                             <i class="fas fa-reply me-1"></i> Reply
                                         </button>
                                     <?php endif; ?>
                                     
-                                    <?php if (isLoggedIn() && ($comment['user_id'] == $_SESSION['user_id'] || isModerator())): ?>
+                                    <?php if (isLoggedIn() && ($comment['user_id'] == $_SESSION['user_id'] || isAdmin() || isModerator())): ?>
                                         <a href="<?php echo SITE_URL; ?>/pages/edit_comment.php?id=<?php echo $comment['comment_id']; ?>" class="btn btn-sm btn-link">
                                             <i class="fas fa-edit me-1"></i> Edit
                                         </a>
@@ -256,98 +233,6 @@ include __DIR__ . '/../includes/header.php';
                                     <?php endif; ?>
                                 </div>
                             </div>
-                            
-                            <!-- Reply form (hidden by default) -->
-                            <?php if (isLoggedIn()): ?>
-                                <div class="mt-3" id="reply-form-<?php echo $comment['comment_id']; ?>" style="display: none;">
-                                    <form action="<?php echo SITE_URL; ?>/pages/post.php?id=<?php echo $postId; ?>" method="POST">
-                                        <input type="hidden" name="parent_comment_id" value="<?php echo $comment['comment_id']; ?>">
-                                        <div class="mb-3">
-                                            <textarea class="form-control" name="comment_content" rows="2" placeholder="Write your reply here..." required></textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-paper-plane me-1"></i> Submit Reply
-                                        </button>
-                                    </form>
-                                </div>
-                            <?php endif; ?>
-                            
-                            <!-- Replies -->
-                            <?php if (!empty($comment['replies'])): ?>
-                                <div class="reply-section">
-                                    <?php foreach ($comment['replies'] as $reply): ?>
-                                        <div class="card reply-card mb-2" id="comment-<?php echo $reply['comment_id']; ?>">
-                                            <div class="card-body">
-                                                <div class="comment-header">
-                                                    <img src="<?php echo UPLOAD_URL . $reply['profile_image']; ?>" alt="<?php echo $reply['username']; ?>" class="comment-avatar">
-                                                    <div>
-                                                        <h6 class="mb-0"><?php echo $reply['username']; ?></h6>
-                                                        <div class="comment-meta">
-                                                            <span><?php echo date('M d, Y', strtotime($reply['created_at'])); ?></span>
-                                                            <?php if ($reply['updated_at'] != $reply['created_at']): ?>
-                                                                <span class="mx-1">•</span>
-                                                                <span>Edited</span>
-                                                            <?php endif; ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="comment-content">
-                                                    <?php echo nl2br($reply['content']); ?>
-                                                </div>
-                                                
-                                                <div class="comment-actions">
-                                                    <div class="vote-buttons">
-                                                        <?php 
-                                                        $replyUserVote = '';
-                                                        if (isLoggedIn()) {
-                                                            $sql = "SELECT vote_type FROM votes 
-                                                                    WHERE user_id = ? AND content_type = 'comment' AND content_id = ?";
-                                                            $result = executePreparedStatement($sql, "ii", [$_SESSION['user_id'], $reply['comment_id']]);
-                                                            if ($result->num_rows > 0) {
-                                                                $replyUserVote = $result->fetch_assoc()['vote_type'];
-                                                            }
-                                                        }
-                                                        ?>
-                                                        <button class="btn btn-sm <?php echo $replyUserVote === 'upvote' ? 'upvoted' : ''; ?> comment-vote-btn" 
-                                                                id="comment-<?php echo $reply['comment_id']; ?>-upvote"
-                                                                data-comment-id="<?php echo $reply['comment_id']; ?>" 
-                                                                data-vote-type="upvote" 
-                                                                <?php echo !isLoggedIn() ? 'disabled' : ''; ?>>
-                                                            <i class="fas fa-arrow-up"></i>
-                                                        </button>
-                                                        
-                                                        <span class="vote-count" id="comment-<?php echo $reply['comment_id']; ?>-votes">
-                                                            <?php echo $reply['upvotes'] - $reply['downvotes']; ?>
-                                                        </span>
-                                                        
-                                                        <button class="btn btn-sm <?php echo $replyUserVote === 'downvote' ? 'downvoted' : ''; ?> comment-vote-btn" 
-                                                                id="comment-<?php echo $reply['comment_id']; ?>-downvote"
-                                                                data-comment-id="<?php echo $reply['comment_id']; ?>" 
-                                                                data-vote-type="downvote" 
-                                                                <?php echo !isLoggedIn() ? 'disabled' : ''; ?>>
-                                                            <i class="fas fa-arrow-down"></i>
-                                                        </button>
-                                                    </div>
-                                                    
-                                                    <div>
-                                                        <?php if (isLoggedIn() && ($reply['user_id'] == $_SESSION['user_id'] || isModerator())): ?>
-                                                            <a href="<?php echo SITE_URL; ?>/pages/edit_comment.php?id=<?php echo $reply['comment_id']; ?>" class="btn btn-sm btn-link">
-                                                                <i class="fas fa-edit me-1"></i> Edit
-                                                            </a>     
-                                                            <a href="<?php echo SITE_URL; ?>/pages/delete_comment.php?id=<?php echo $comment['comment_id']; ?>"
-                                                                class="btn btn-sm text-danger delete-comment"
-                                                                data-delete-url="<?php echo SITE_URL; ?>/pages/delete_comment.php?id=<?php echo $comment['comment_id']; ?>">
-                                                                <i class="fas fa-trash me-1"></i> Delete
-                                                            </a>
-                                                        <?php endif; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            <?php endif; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -407,7 +292,7 @@ include __DIR__ . '/../includes/header.php';
                     <div>
                         <h5 class="mb-0"><?php echo $author['username']; ?></h5>
                         <p class="text-muted mb-0">
-                            <?php echo $author['is_moderator'] ? '<span class="badge bg-primary">Moderator</span>' : ''; ?>
+                            <?php echo $author['role'] ? '<span class="badge bg-primary">Moderator</span>' : ''; ?>
                             Member since <?php echo date('M Y', strtotime($author['created_at'])); ?>
                         </p>
                     </div>
@@ -461,7 +346,7 @@ include __DIR__ . '/../includes/header.php';
     </div>
 </div>
 
-<!-- Custom Modal -->
+<!-- HTML JS -->
 <div id="deleteModal" class="modal-overlay" hidden>
   <div class="modal-content">
     <p>Are you sure you want to delete this comment?</p>
@@ -472,7 +357,6 @@ include __DIR__ . '/../includes/header.php';
   </div>
 </div>
 
-<!-- Delete Post Modal -->
 <div id="deletePostModal" class="modal-overlay" hidden>
   <div class="modal-content">
     <p>Are you sure you want to delete this post?</p>
@@ -486,5 +370,5 @@ include __DIR__ . '/../includes/header.php';
 
 <?php
 // Include footer
-include __DIR__ . '/../includes/footer.php';
+include '../includes/footer.php';
 ?>

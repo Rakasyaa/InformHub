@@ -27,7 +27,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Site configuration
-define('SITE_NAME', 'Learning Forum');
+define('SITE_NAME', 'InformatikaHub');
 define('SITE_URL', 'http://localhost/forum');
 define('UPLOAD_DIR', $_SERVER['DOCUMENT_ROOT'] . '/forum/uploads/');
 define('UPLOAD_URL', SITE_URL . '/uploads/');
@@ -68,9 +68,14 @@ function isLoggedIn() {
     return isset($_SESSION['user_id']) && !empty($_SESSION['user_id']);
 }
 
-// Check if user is moderator
+// Check if user is moderator or admin
 function isModerator() {
-    return isset($_SESSION['is_moderator']) && $_SESSION['is_moderator'] === 1;
+    return isset($_SESSION['role']) && ($_SESSION['role'] === 'mod' || $_SESSION['role'] === 'admin');
+}
+
+// Check if user is admin
+function isAdmin() {
+    return isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
 }
 
 // Redirect to a page

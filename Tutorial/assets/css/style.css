@@ -14,8 +14,7 @@
     --sidebar-active: linear-gradient(135deg, #0066cc 0%, #2575fc 100%);
     --sidebar-hover: rgba(0, 102, 204, 0.1);
 }
-
-/* Dark Theme Variables */
+ /* Dark Theme Variables */
 [data-theme="dark"] {
     --primary-color: #0077cc;
     --secondary-color: #4a90e2;

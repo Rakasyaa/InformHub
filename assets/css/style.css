@@ -1,5 +1,3 @@
-/* Custom styles for Learning Forum */
-
 /* General styles */
 body {
     background-color: #f8f9fa;
@@ -12,9 +10,64 @@ body {
     flex: 1;
 }
 
-footer {
-    margin-top: auto;
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 220px; /* Tetapkan lebar tetap */
+    background-color: #2cf200;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.15); /* Lebih jelas */
+    padding: 1rem 0;
+    overflow-y: auto;
 }
+
+.category-box {
+    background-color: white;
+    margin: 0.5rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.category-box:hover {
+    transform: scale(1.02);
+}
+
+.sidebar-heading {
+    background-color: #0d6efd;
+    color: white;
+    font-size: 1rem;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    margin-top: 40px;
+}
+
+.sidebar .nav-link {
+    color: #000000;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #000000;
+}
+
+.sidebar .nav-link:hover {
+    color: #0d6efd;
+}
+
+.sidebar .nav-link.active {
+    background-color: #0d6efd;
+    color: white;
+    border:1px solid #ffffff;
+}
+
+
+main {
+    margin-left: 220px; 
+    min-height: 100vh; 
+    /* padding-bottom: 100px; */
+}
+
 
 /* Card styles */
 .card {
@@ -46,6 +99,16 @@ footer {
 
 .topic-card .card-text {
     flex-grow: 1;
+}
+
+/* code card */
+.card-code {
+    background-color: #1e1e2f; /* dark background */
+    color: #f8f8f2; /* light text */
+    font-size: 0.95rem;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
 }
 
 /* Post styles */
@@ -162,8 +225,12 @@ footer {
 }
 
 /* Form styles */
-.form-control:focus {
+.form-control {
     border-color: #80bdff;
+    border-width: 1px;
+}
+
+.form-control:focus {
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
@@ -403,4 +470,8 @@ footer {
 
 footer {
     margin-top: auto;
+    width: 100%;
+    border-top: 1px solid #ddd;
+    position: relative; 
+    background-color: #f8f9fa;
 }

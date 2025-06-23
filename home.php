@@ -18,7 +18,7 @@ if (!isset($latest_tutorials)) {
 $conn = getDbConnection(); // Get mysqli connection
 
 // Latest tutorial
-$sql = "SELECT topic_name, description FROM topic_spaces LIMIT 3";
+$sql = "SELECT tutorial_id, category, title, description FROM tutorial_content ORDER BY created_at DESC LIMIT 3";
 $result = executeQuery($sql);
 
 while ($row = $result->fetch_assoc()) {
@@ -72,20 +72,6 @@ if ($result_total_posts) {
 }
 ?>
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informatika Hub - Learn, Share, and Connect</title>
-    
-    <!-- Custom CSS -->
-    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
-    
-    <!-- <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png"> -->
-</head>
-<body>
-
 <section class="Home">
         <div class="Home-overlay">
             <div class="container">
@@ -117,14 +103,14 @@ if ($result_total_posts) {
                 <?php foreach ($latest_tutorials as $tutorial): ?>
                     <div class="col-md-4">
                         <div class="card course-card h-100">
-                            <a href="Tutorial/course.php?category=<?php echo urlencode($tutorial['topic_name']); ?>">
+                            <a href="pages/tutorial.php?id=<?php echo urlencode($tutorial['tutorial_id']); ?>">
                                 <div class="card-body">
                                     <div class="course-category mb-2">
                                         <span class="badge bg-primary">
-                                            <?php echo $tutorial['topic_name']; ?>
+                                            <?php echo $tutorial['category']; ?>
                                         </span>
                                     </div>
-                                    <h5 class="card-title"><?php echo $tutorial['topic_name']; ?></h5>
+                                    <h5 class="card-title"><?php echo $tutorial['title']; ?></h5>
                                     <p class="card-text">
                                         <?php echo substr(strip_tags($tutorial['description']), 0, 100) . '...'; ?>
                                     </p>
@@ -271,5 +257,3 @@ if ($result_total_posts) {
 
     <!-- Footer -->
     <?php require_once 'includes/footer.php'; ?>
-</body>
-</html>

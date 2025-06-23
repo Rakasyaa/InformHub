@@ -7,45 +7,20 @@ require_once 'includes/user.php';
 require_once 'includes/topic.php';
 require_once 'includes/post.php';
 
-// Get posts from followed topics if user is logged in
 // Otherwise, get latest posts from all topics
 $posts = [];
-$pageTitle = 'Latest Posts';
 
-if (isLoggedIn()) {
-    $posts = getPostsFromFollowedTopics($_SESSION['user_id'], 10, 0);
-    $pageTitle = 'Your Feed';
-    
-    // If user doesn't follow any topics yet, get latest posts
-    if (empty($posts)) {
-        $sql = "SELECT p.*, u.username, u.profile_image, t.topic_name,
-                (SELECT COUNT(*) FROM comments WHERE post_id = p.post_id) as comments_count
-                FROM posts p
-                JOIN users u ON p.user_id = u.user_id
-                JOIN topic_spaces t ON p.topic_id = t.topic_id
-                ORDER BY p.created_at DESC
-                LIMIT 10";
-        $result = executeQuery($sql);
-        
-        while ($row = $result->fetch_assoc()) {
-            $posts[] = $row;
-        }
-        
-        $pageTitle = 'Latest Posts';
-    }
-} else {
-    $sql = "SELECT p.*, u.username, u.profile_image, t.topic_name,
+$sql = "SELECT p.*, u.username, u.profile_image, t.topic_name,
             (SELECT COUNT(*) FROM comments WHERE post_id = p.post_id) as comments_count
             FROM posts p
             JOIN users u ON p.user_id = u.user_id
             JOIN topic_spaces t ON p.topic_id = t.topic_id
             ORDER BY p.created_at DESC
             LIMIT 10";
-    $result = executeQuery($sql);
+$result = executeQuery($sql);
     
-    while ($row = $result->fetch_assoc()) {
-        $posts[] = $row;
-    }
+while ($row = $result->fetch_assoc()) {
+    $posts[] = $row;
 }
 
 // Get popular topics
@@ -70,7 +45,7 @@ include 'includes/header.php';
     <!-- Main content -->
     <div class="col-lg-8">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2><?php echo $pageTitle; ?></h2>
+            <h2>Latest Posts</h2>
             <?php if (isLoggedIn()): ?>
                 <a href="<?php echo SITE_URL; ?>/pages/create_post.php" class="btn btn-primary">
                     <i class="fas fa-plus-circle me-1"></i> Create Post

@@ -21,6 +21,8 @@ require_once __DIR__ . '/functions.php'; // Include functions.php
         const siteUrl = '<?php echo SITE_URL; ?>';
         
     </script>
+    <!-- Icon -->
+    <link rel="shortcut icon" href="<?php echo SITE_URL; ?>/assets/img/icon.jpg" type="image/x-icon">
 </head>
 <body>
     <!-- Navigation -->
@@ -45,7 +47,7 @@ require_once __DIR__ . '/functions.php'; // Include functions.php
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo SITE_URL; ?>/Tutorial/course.php">
+                        <a class="nav-link" href="<?php echo SITE_URL; ?>/pages/tutorial.php">
                             <i class="fas fa-book me-1"></i> Mulai Belajar
                         </a>
                     </li>
@@ -71,7 +73,7 @@ require_once __DIR__ . '/functions.php'; // Include functions.php
                                 <a class="dropdown-item" href="<?php echo SITE_URL; ?>/pages/profile.php">
                                     <i class="fas fa-user me-1"></i> Profile
                                 </a>
-                                <?php if (isModerator()): ?>
+                                <?php if (isModerator() || isAdmin()): ?>
                                     <a class="dropdown-item" href="<?php echo SITE_URL; ?>/pages/create_topic.php">
                                         <i class="fas fa-plus-circle me-1"></i> Create Topic
                                     </a>

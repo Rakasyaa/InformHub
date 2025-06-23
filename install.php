@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $sql = "UPDATE users SET username = '$username', email = '$email', password = '$password' WHERE username = 'admin'";
             } else {
                 // Insert admin user
-                $sql = "INSERT INTO users (username, email, password, is_moderator) VALUES ('$username', '$email', '$password', 1)";
+                $sql = "INSERT INTO users (username, email, password, role) VALUES ('$username', '$email', '$password', 'admin')";
             }
             
             if ($conn->query($sql) === TRUE) {
@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning Forum Installation</title>
+    <title>InformatikaHub Installation</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -175,7 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="container install-container">
         <div class="text-center mb-4">
-            <h1><i class="fas fa-book-reader me-2"></i> Learning Forum</h1>
+            <h1><i class="fas fa-book-reader me-2"></i> InformatikaHub</h1>
             <p class="lead">Installation Wizard</p>
         </div>
         
