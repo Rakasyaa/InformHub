@@ -18,7 +18,7 @@
         <li>R. Rafi Yudi Pramana (F1D02310132)</li>
         <li>Muhammad Ridho Fahru Rozy(F1D022076)</li>
     </ul>
-    <p>repo bersama projek web (Pliss kerjain biar cepet selesai)</p>
+    <p>repo bersama projek web </p>
 </div>
 
 
