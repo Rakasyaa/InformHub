@@ -73,11 +73,27 @@ Jika belum punya, unduh dan instal [XAMPP](https://www.apachefriends.org/index.h
 > Databse `InformHub` dan Tabel yang ada di dalamnya akan otomatis dibuat, beserta beberapa data jika sudah disiapkan.
 
 6. **Jalankan Aplikasi**
-   - Buka browser dan akses http://localhost/InformHub/index.php
-   - Gunakan akun admin default:
-     - Email: admin@gmail.com
-     - Username: admin
-     - Password: 123
+    - Buka browser dan akses http://localhost/InformHub/index.php
+    - Gunakan akun admin default:
+        - Email: admin@gmail.com
+        - Username: admin
+        - Password: 123
+    - jika tidak ada, update akses admin di http://localhost/InformHub/install.php
+    - Gunakan akun moderator default:
+        - Email: Rakasya@gmail.com
+        - Username: Raksya
+        - Password: 123
+    - Gunakan akun user default:
+        - Email: Yoga@gmail.com
+        - Username: Yoga
+        - Password: 123
+        - Email: Ali@gmail.com
+        - Username: Ali
+        - Password: 123
+        - Email: Rafi@gmail.com
+        - Username: Rafi
+        - Password: 123
+
 
 ## 🛠 Teknologi yang Digunakan
 
