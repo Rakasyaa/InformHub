@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Create post
     $result = createPost($_SESSION['user_id'], $selectedTopicId, $title, $content, $mediaFile);
     
-    redirect("index.php");
+    redirect("forum.php");
 }
 
 // Include header

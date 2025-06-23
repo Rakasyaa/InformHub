@@ -154,6 +154,91 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// Toggle moderator
+document.addEventListener('DOMContentLoaded', function () {
+    // Elemen modal toggle moderator
+    const moderatorModal = document.getElementById('moderatorModal');
+    const cancelToggle = document.getElementById('cancelToggle');
+    const confirmToggle = document.getElementById('confirmToggle');
+
+    // Tangani klik tombol toggle moderator
+    document.querySelectorAll('.toggle-mod-btn').forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const toggleUrl = this.getAttribute('data-toggle-url');
+            confirmToggle.setAttribute('href', toggleUrl);
+            moderatorModal.removeAttribute('hidden');
+        });
+    });
+
+    // Batalkan aksi toggle
+    cancelToggle.addEventListener('click', function () {
+        moderatorModal.setAttribute('hidden', true);
+    });
+
+    // Klik di luar modal
+    moderatorModal.addEventListener('click', function (e) {
+        if (e.target === moderatorModal) {
+            moderatorModal.setAttribute('hidden', true);
+        }
+    });
+});
+
+// Delete topic
+document.addEventListener('DOMContentLoaded', function () {
+    const deleteTopicModal = document.getElementById('deleteTopicModal');
+    const cancelDeleteTopic = document.getElementById('cancelDeleteTopic');
+    const confirmDeleteTopic = document.getElementById('confirmDeleteTopic');
+
+    // Saat klik tombol delete
+    document.querySelectorAll('.delete-topic-btn').forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            const deleteUrl = this.getAttribute('data-delete-url');
+            confirmDeleteTopic.setAttribute('href', deleteUrl);
+            deleteTopicModal.removeAttribute('hidden');
+        });
+    });
+
+    // Batalkan penghapusan
+    cancelDeleteTopic.addEventListener('click', function () {
+        deleteTopicModal.setAttribute('hidden', true);
+    });
+
+    // Klik di luar modal untuk menutup
+    deleteTopicModal.addEventListener('click', function (e) {
+        if (e.target === deleteTopicModal) {
+            deleteTopicModal.setAttribute('hidden', true);
+        }
+    });
+});
+
+// Delete tutorial
+document.addEventListener('DOMContentLoaded', function () {
+    const deleteTutorialModal = document.getElementById('deleteTutorialModal');
+    const cancelDeleteTutorial = document.getElementById('cancelDeleteTutorial');
+    const confirmDeleteTutorial = document.getElementById('confirmDeleteTutorial');
+
+    document.querySelectorAll('.delete-tutorial-btn').forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            const deleteUrl = this.getAttribute('data-delete-url');
+            confirmDeleteTutorial.setAttribute('href', deleteUrl);
+            deleteTutorialModal.removeAttribute('hidden');
+        });
+    });
+
+    cancelDeleteTutorial.addEventListener('click', function () {
+        deleteTutorialModal.setAttribute('hidden', true);
+    });
+
+    deleteTutorialModal.addEventListener('click', function (e) {
+        if (e.target === deleteTutorialModal) {
+            deleteTutorialModal.setAttribute('hidden', true);
+        }
+    });
+});
 
 // Up-vote and down-vote (no jQuery / Bootstrap)
 document.addEventListener('DOMContentLoaded', function () {

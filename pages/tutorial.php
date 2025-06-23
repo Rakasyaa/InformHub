@@ -124,8 +124,8 @@
                         <i class="fas fa-edit fa-lg"></i> Edit
                     </a>
                     <a href="<?= SITE_URL ?>/pages/delete_tutorial.php?id=<?= $tutorial_id ?>" 
-                       class="btn btn-sm btn-outline-danger"
-                       onclick="return confirm('Yakin hapus tutorial ini? Tindakan ini tidak dapat dibatalkan!')">
+                       class="btn btn-sm btn-outline-danger delete-tutorial-btn"
+                       data-delete-url="<?= SITE_URL ?>/pages/delete_tutorial.php?id=<?= $tutorial_id ?>">
                         <i class="fas fa-trash fa-lg"></i> Hapus
                     </a>
                 </div>
@@ -249,7 +249,7 @@
                                     <p class="card-text">
                                     <?php echo substr(strip_tags($row['description']), 0, 50) . '...'; ?>
                                     </p>
-                                    <?php if(isModerator()): ?>
+                                    <?php if(isAdmin()): ?>
                                     <div class="gap-2 d-flex justify-content-end mt-2">
                                         <a href="<?= SITE_URL ?>/pages/update_tutorial.php?id=<?= $row['tutorial_id'] ?>" 
                                            class="btn btn-sm btn-outline-primary"
@@ -257,10 +257,9 @@
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <a href="<?= SITE_URL ?>/pages/delete_tutorial.php?id=<?= $row['tutorial_id'] ?>" 
-                                           class="btn btn-sm btn-outline-danger"
-                                           onclick="return confirm('Yakin hapus tutorial ini? Tindakan ini tidak dapat dibatalkan!')"
-                                           title="Hapus Tutorial">
-                                            <i class="fas fa-trash"></i>
+                                        class="btn btn-sm btn-outline-danger delete-tutorial-btn"
+                                        data-delete-url="<?= SITE_URL ?>/pages/delete_tutorial.php?id=<?= $row['tutorial_id'] ?>">
+                                            <i class="fas fa-trash fa-lg"></i>
                                         </a>
                                     </div>
                                     <?php endif; ?>
@@ -272,6 +271,17 @@
             <?php endif; ?>
         </main>
     </div>
+</div>
+
+<!-- Delete Tutorial Modal -->
+<div id="deleteTutorialModal" class="modal-overlay" hidden>
+  <div class="modal-content">
+    <p>Yakin hapus tutorial ini? Tindakan ini tidak dapat dibatalkan!</p>
+    <div class="modal-buttons">
+      <button id="cancelDeleteTutorial">Batal</button>
+      <a id="confirmDeleteTutorial" href="#" class="confirm-button">Ya, Hapus</a>
+    </div>
+  </div>
 </div>
 
 <?php include_once '../includes/footer.php'; ?>

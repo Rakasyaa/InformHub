@@ -54,6 +54,5 @@ if ($success) {
     $_SESSION['error'] = 'Gagal menghapus komentar. Silakan coba lagi.';
 }
 
-// Redirect back to the tutorial page
 header('Location: ' . SITE_URL . "/pages/tutorial.php?id=$tutorial_id");
 exit;

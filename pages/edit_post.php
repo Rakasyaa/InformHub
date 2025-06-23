@@ -1,11 +1,8 @@
 <?php
-/**
- * Edit post page
- */
-require_once $_SERVER['DOCUMENT_ROOT'] . '/forum/config/config.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/forum/includes/user.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/forum/includes/topic.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/forum/includes/post.php';
+require_once '../config/config.php';
+require_once '../includes/user.php';
+require_once '../includes/topic.php';
+require_once '../includes/post.php';
 
 // Check if user is logged in
 if (!isLoggedIn()) {
@@ -16,7 +13,7 @@ if (!isLoggedIn()) {
 // Check if post ID is provided
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     addError("Invalid post ID");
-    redirect('../index.php');
+    redirect('../forum.php');
 }
 
 $postId = (int)$_GET['id'];
@@ -26,13 +23,13 @@ $post = getPostById($postId);
 
 if (!$post) {
     addError("Post not found");
-    redirect('../index.php');
+    redirect('../forum.php');
 }
 
 // Check if user is authorized to edit post
 if ($post['user_id'] != $_SESSION['user_id'] && !isModerator()) {
     addError("You don't have permission to edit this post");
-    redirect("post.php?id=$postId");
+    redirect("pages/post.php?id=$postId");
 }
 
 // Handle post form submission
@@ -45,12 +42,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if ($result) {
         // Redirect to the post
-        redirect("post.php?id=$postId");
+        redirect("pages/post.php?id=$postId");
     }
 }
 
 // Include header
-include $_SERVER['DOCUMENT_ROOT'] . '/forum/includes/header.php';
+include '../includes/header.php';
 ?>
 
 <div class="row">
@@ -106,5 +103,5 @@ include $_SERVER['DOCUMENT_ROOT'] . '/forum/includes/header.php';
 
 <?php
 // Include footer
-include $_SERVER['DOCUMENT_ROOT'] . '/forum/includes/footer.php';
+include '../includes/footer.php';
 ?>

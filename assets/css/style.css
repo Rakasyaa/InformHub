@@ -109,6 +109,7 @@ main {
     padding: 1rem;
     border-radius: 10px;
     margin-bottom: 1.5rem;
+    font-family: Menlo, Monaco, 'Courier New', monospace;
 }
 
 /* Post styles */

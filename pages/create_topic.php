@@ -1,37 +1,18 @@
 <?php
-/**
- * Create topic page - only accessible to moderators
- */
 require_once '../config/config.php';
 require_once '../includes/user.php';
 require_once '../includes/topic.php';
 
-// Check if user is logged in and is a moderator
-if (!isLoggedIn()) {
-    addError("You must be logged in to access this page");
-    redirect('login.php');
-}
-
-if (!isModerator()) {
-    addError("You don't have permission to create topic spaces");
-    redirect('../index.php');
-}
-
-// Handle topic form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $topicName = sanitizeInput($_POST['topic_name']);
     $description = sanitizeInput($_POST['description']);
     
     // Create topic
-    $result = createTopicSpace($topicName, $description, $_SESSION['user_id']);
-    
-    if ($result) {
-        // Redirect to the new topic
-        redirect("topic.php?id=$result");
-    }
+    createTopicSpace($topicName, $description, $_SESSION['user_id']);
+   
+    redirect("pages/search.php");
 }
 
-// Include header
 include '../includes/header.php';
 ?>
 
@@ -70,6 +51,5 @@ include '../includes/header.php';
 </div>
 
 <?php
-// Include footer
 include '../includes/footer.php';
 ?>

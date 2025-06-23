@@ -15,7 +15,7 @@ if (!isLoggedIn()) {
 // Check if comment ID is provided
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     addError("Invalid comment ID");
-    redirect('../index.php');
+    redirect('../forum.php');
 }
 
 $commentId = (int)$_GET['id'];
@@ -25,7 +25,7 @@ $comment = getCommentById($commentId);
 
 if (!$comment) {
     addError("Comment not found");
-    redirect('../index.php');
+    redirect('../forum.php');
 }
 
 // Check if user is authorized to edit comment

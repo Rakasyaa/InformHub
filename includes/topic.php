@@ -1,10 +1,8 @@
 <?php
-/**
- * Topic space related functions
- */
-// Calculate the path to config.php
-$config_path = __DIR__ . '/../config/config.php';
-require_once $config_path;
+$baseDir = dirname(__DIR__);
+
+require_once $baseDir . '/config/config.php';
+require_once $baseDir . '/config/database.php';
 
 // Create a new topic space
 function createTopicSpace($topicName, $description, $createdBy) {
@@ -23,7 +21,7 @@ function createTopicSpace($topicName, $description, $createdBy) {
     // Check if topic already exists
     $sql = "SELECT topic_id FROM topic_spaces WHERE topic_name = ?";
     $result = executePreparedStatement($sql, "s", [$topicName]);
-    
+        
     if ($result->num_rows > 0) {
         addError("Topic already exists");
         return false;
@@ -33,11 +31,47 @@ function createTopicSpace($topicName, $description, $createdBy) {
     $sql = "INSERT INTO topic_spaces (topic_name, description, created_by) VALUES (?, ?, ?)";
     $result = executePreparedStatement($sql, "ssi", [$topicName, $description, $createdBy]);
     
-    if ($result) {
-        addSuccess("Topic space created successfully");
-        return getLastInsertId();
-    } else {
-        addError("Failed to create topic space");
+    addSuccess("Topic space created successfully");
+    return true;
+}
+
+// Delete a topic
+function deleteTopic($topicId, $userId) {
+    // Check if user is moderator
+    if (!isModerator()) {
+        addError("Only moderators can delete topic spaces");
+        return false;
+    }
+    
+    // Start transaction
+    $conn = getDbConnection();
+    $conn->begin_transaction();
+    
+    try {
+        // Delete topic follows
+        $sql = "DELETE FROM user_topic_follows WHERE topic_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $topicId);
+        $stmt->execute();
+        
+        // Delete posts in this topic
+        $sql = "DELETE FROM posts WHERE topic_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $topicId);
+        $stmt->execute();
+        
+        // Delete the topic
+        $sql = "DELETE FROM topic_spaces WHERE topic_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $topicId);
+        $stmt->execute();
+        
+        $conn->commit();
+        addSuccess("Topic deleted successfully");
+        return true;
+    } catch (Exception $e) {
+        $conn->rollback();
+        addError("Failed to delete topic: " . $e->getMessage());
         return false;
     }
 }

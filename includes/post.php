@@ -167,13 +167,8 @@ function updatePost($postId, $title, $content) {
     $sql = "UPDATE posts SET title = ?, content = ?, updated_at = CURRENT_TIMESTAMP WHERE post_id = ?";
     $result = executePreparedStatement($sql, "ssi", [$title, $content, $postId]);
     
-    if ($result) {
-        addSuccess("Post updated successfully");
-        return true;
-    } else {
-        addError("Failed to update post");
-        return false;
-    }
+    addSuccess("Post updated successfully");
+    return true;
 }
 
 // Delete post

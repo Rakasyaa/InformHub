@@ -1,7 +1,4 @@
 <?php
-/**
- * Follow/unfollow topic page
- */
 require_once '../config/config.php';
 require_once '../includes/user.php';
 require_once '../includes/topic.php';
@@ -27,7 +24,7 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id']) || !isset($_GET['action'])) 
     }
     
     addError("Invalid request");
-    redirect('../index.php');
+    redirect('../forum.php');
 }
 
 $topicId = (int)$_GET['id'];
@@ -44,7 +41,7 @@ if (!$topic) {
     }
     
     addError("Topic not found");
-    redirect('../index.php');
+    redirect('../forum.php');
 }
 
 // Follow or unfollow topic
@@ -61,7 +58,7 @@ if ($action === 'follow') {
     }
     
     addError("Invalid action");
-    redirect("topic.php?id=$topicId");
+    redirect("../forum.php");
 }
 
 // Return JSON response if AJAX request
@@ -79,5 +76,5 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 }
 
 // Redirect back to topic page
-redirect("topic.php?id=$topicId");
+redirect("pages/topic.php?id=$topicId");
 ?>

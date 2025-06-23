@@ -9,7 +9,7 @@ require_once '../includes/post.php';
 // Check if post ID is provided
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     addError("Invalid post ID");
-    redirect('index.php');
+    redirect('forum.php');
 }
 
 $postId = (int)$_GET['id'];
@@ -19,13 +19,13 @@ $post = getPostById($postId);
 
 if (!$post) {
     addError("Post not found");
-    redirect('index.php');
+    redirect('forum.php');
 }
 
 // Delete post
 $result = deletePost($postId);
 
 if (1) {
-    redirect("index.php");
+    redirect("forum.php");
 }
 ?>

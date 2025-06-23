@@ -1,8 +1,4 @@
 <?php
-/**
- * Topic page - displays posts from a specific topic space
- */
-// Calculate paths using __DIR__ for reliable path resolution
 $config_path = __DIR__ . '/../config/config.php';
 $user_path = __DIR__ . '/../includes/user.php';
 $topic_path = __DIR__ . '/../includes/topic.php';
@@ -197,8 +193,15 @@ include __DIR__ . '/../includes/header.php';
     <div class="col-lg-4">
         <!-- Topic info -->
         <div class="card mb-4">
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-between align-items-center">
                 <h5 class="mb-0">About This Topic</h5>
+                <?php if (isModerator()): ?>
+                    <a href="<?php echo SITE_URL; ?>/pages/delete_topic.php?id=<?php echo $topicId; ?>" 
+                    class="btn btn-sm btn-outline-danger delete-topic-btn"
+                    data-delete-url="<?php echo SITE_URL; ?>/pages/delete_topic.php?id=<?php echo $topicId; ?>">
+                        <i class="fas fa-trash"></i> Delete Topic
+                    </a>
+                <?php endif; ?>
             </div>
             <div class="card-body">
                 <p><?php echo $topic['description']; ?></p>
@@ -265,6 +268,17 @@ include __DIR__ . '/../includes/header.php';
             </div>
         <?php endif; ?>
     </div>
+</div>
+
+<!-- Delete Topic Modal -->
+<div id="deleteTopicModal" class="modal-overlay" hidden>
+  <div class="modal-content">
+    <p>Are you sure you want to delete this topic? This action cannot be undone.</p>
+    <div class="modal-buttons">
+      <button id="cancelDeleteTopic">Cancel</button>
+      <a id="confirmDeleteTopic" href="#" class="confirm-button">Yes, Delete</a>
+    </div>
+  </div>
 </div>
 
 <?php

@@ -1,7 +1,4 @@
 <?php
-/**
- * Home page - displays posts from followed topics
- */
 require_once 'config/config.php';
 require_once 'includes/user.php';
 require_once 'includes/topic.php';

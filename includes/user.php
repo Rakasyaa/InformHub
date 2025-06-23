@@ -121,26 +121,17 @@ function updateUserProfile($userId, $bio, $profileImage = null) {
 
 // Toggle moderator status
 function toggleModeratorStatus($userId) {
-    // Check if current user is moderator
-    if (!isModerator()) {
-        addError("You don't have permission to perform this action");
-        return false;
-    }
-    
-    // Get current moderator status
+    // Get current user data
     $user = getUserById($userId);
-    $newStatus = $user['role'] ? 'user' : 'mod';
+    
+    // Toggle between 'mod' and 'user' roles
+    $newStatus = ($user['role'] === 'mod') ? 'member' : 'mod';
     
     // Update moderator status
     $sql = "UPDATE users SET role = ? WHERE user_id = ?";
     $result = executePreparedStatement($sql, "si", [$newStatus, $userId]);
     
-    if ($result) {
-        $statusText = $newStatus ? "demoted from moderator" : "promoted to moderator";
-        addSuccess("User {$user['username']} has been {$statusText}");
-        return true;
-    } else {
-        addError("Failed to update moderator status");
-        return false;
-    }
+    $statusText = ($newStatus === 'mod') ? 'promoted to moderator' : 'demoted to regular user';
+    addSuccess("User {$user['username']} has been {$statusText}");
+    return true;
 }
