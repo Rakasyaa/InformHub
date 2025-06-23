@@ -10,7 +10,17 @@
     [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.2-7952B3?logo=bootstrap)](https://getbootstrap.com/)
 </div>
 
-repo bersama projek web (Pliss kerjain biar cepet selesai)
+<div align="start">
+    <h2>👨 Anggota Kelompok:</h2>
+    <ul style="list-style: none; padding-left: 0;">
+        <li>Rakasya Yoga Surya Pratama (F1D02310022)</li>
+        <li>M. Ali Abdillah Khotami (F1D02310073)</li>
+        <li>R. Rafi Yudi Pramana (F1D02310132)</li>
+        <li>Muhammad Ridho Fahru Rozy(F1D022076)</li>
+    </ul>
+    <p>repo bersama projek web (Pliss kerjain biar cepet selesai)</p>
+</div>
+
 
 ### Project Structure
 
@@ -81,7 +91,7 @@ Jika belum punya, unduh dan instal [XAMPP](https://www.apachefriends.org/index.h
     - jika tidak ada, update akses admin di http://localhost/InformHub/install.php
     - Gunakan akun moderator default:
         - Email: Rakasya@gmail.com
-        - Username: Raksya
+        - Username: Rakasya
         - Password: 123
     - Gunakan akun user default:
         - Email: Yoga@gmail.com
