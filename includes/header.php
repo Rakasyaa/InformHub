@@ -28,7 +28,7 @@ require_once __DIR__ . '/functions.php'; // Include functions.php
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="<?php echo SITE_URL; ?>/home.php">
+            <a class="navbar-brand" href="<?php echo SITE_URL; ?>/index.php">
                 <i class="fas fa-book-reader me-2"></i> InformatikaHub
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -37,7 +37,7 @@ require_once __DIR__ . '/functions.php'; // Include functions.php
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo SITE_URL; ?>/home.php">
+                        <a class="nav-link" href="<?php echo SITE_URL; ?>/index.php">
                             <i class="fas fa-home me-1"></i> Home
                         </a>
                     </li>
@@ -52,7 +52,7 @@ require_once __DIR__ . '/functions.php'; // Include functions.php
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo SITE_URL; ?> #">
+                        <a class="nav-link" href="<?php echo SITE_URL; ?>/forum.php">
                             <i class="fas fa-comments me-1"></i> Forum
                         </a>
                     </li>

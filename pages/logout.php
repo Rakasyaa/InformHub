@@ -9,5 +9,5 @@ require_once '../includes/user.php';
 logoutUser();
 
 // Redirect to home page
-redirect('/home.php');
+redirect('/index.php');
 ?>

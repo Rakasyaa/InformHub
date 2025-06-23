@@ -11,7 +11,7 @@ require_once $user_path;
 
 // Check if user is already logged in
 if (isLoggedIn()) {
-    redirect('../home.php');
+    redirect('../index.php');
 }
 
 // Handle login form submission
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     
     if (loginUser($username, $password)) {
-        redirect('/home.php');
+        redirect('/index.php');
     }
 }
 

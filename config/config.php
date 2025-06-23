@@ -28,8 +28,8 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Site configuration
 define('SITE_NAME', 'InformatikaHub');
-define('SITE_URL', 'http://localhost/forum');
-define('UPLOAD_DIR', $_SERVER['DOCUMENT_ROOT'] . '/forum/uploads/');
+define('SITE_URL', 'http://localhost/InformHub');
+define('UPLOAD_DIR', $_SERVER['DOCUMENT_ROOT'] . '/InformHub/uploads/');
 define('UPLOAD_URL', SITE_URL . '/uploads/');
 
 // Maximum file upload size (in bytes) - 5MB
