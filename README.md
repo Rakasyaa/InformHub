@@ -28,7 +28,7 @@ Jika belum punya, unduh dan instal [XAMPP](https://www.apachefriends.org/index.h
 
 ### 5. Jalankan Aplikasi
 
-Buka browser dan akses: http://localhost/forum/index.php
+Buka browser dan akses: http://localhost/forum/home.php
 Add comment
 
 # Learning Forum Web Application
