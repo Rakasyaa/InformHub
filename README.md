@@ -77,7 +77,7 @@ Jika belum punya, unduh dan instal [XAMPP](https://www.apachefriends.org/index.h
    - Buka phpMyAdmin di http://localhost/phpmyadmin
    - Buat database baru bernama `InformHub`
    - Klik database tersebut dan pergi ke Tab **Import**
-   - Pilih file `database.sql` dari folder `database/`
+   - Pilih file `informhub.sql` dari folder `database/`
    - Klik **Go**
    - Sesuaikan konfigurasi database di `config/database.php`
 > Databse `InformHub` dan Tabel yang ada di dalamnya akan otomatis dibuat, beserta beberapa data jika sudah disiapkan.
@@ -134,7 +134,7 @@ InformHub/
 ├── config/           # File konfigurasi
 │   └── database.php  # Konfigurasi koneksi database
 ├── database/         # Skema database
-│   └── forum_db.sql  # File SQL untuk membuat database
+│   └── informhub.sql  # File SQL untuk membuat database
 ├── includes/         # File PHP includes
 ├── pages/            # Halaman template
 │   ├── auth/         # Halaman autentikasi

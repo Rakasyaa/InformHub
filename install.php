@@ -7,7 +7,7 @@
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'forum_db');
+define('DB_NAME', 'informhub');
 
 // Start installation
 $step = isset($_GET['step']) ? (int)$_GET['step'] : 1;
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $configContent = str_replace("define('DB_HOST', 'localhost')", "define('DB_HOST', '" . $_POST['db_host'] . "')", $configContent);
                 $configContent = str_replace("define('DB_USER', 'root')", "define('DB_USER', '" . $_POST['db_user'] . "')", $configContent);
                 $configContent = str_replace("define('DB_PASS', '')", "define('DB_PASS', '" . $_POST['db_pass'] . "')", $configContent);
-                $configContent = str_replace("define('DB_NAME', 'forum_db')", "define('DB_NAME', '" . $_POST['db_name'] . "')", $configContent);
+                $configContent = str_replace("define('DB_NAME', 'informhub')", "define('DB_NAME', '" . $_POST['db_name'] . "')", $configContent);
                 
                 file_put_contents($configFile, $configContent);
                 
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = "Database connection failed: " . $conn->connect_error;
         } else {
             // Read SQL file
-            $sqlFile = 'database/forum_db.sql';
+            $sqlFile = 'database/informhub.sql';
             $sql = file_get_contents($sqlFile);
             
             // Execute SQL queries
@@ -228,7 +228,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <div class="mb-3">
                             <label for="db_name" class="form-label">Database Name</label>
-                            <input type="text" class="form-control" id="db_name" name="db_name" value="forum_db" required>
+                            <input type="text" class="form-control" id="db_name" name="db_name" value="informhub" required>
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">
