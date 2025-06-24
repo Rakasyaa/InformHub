@@ -97,7 +97,7 @@ include __DIR__ . '/../includes/header.php';
                     
                     <?php if ($post['media_url'] && $post['media_type'] === 'image'): ?>
                         <div class="mt-3">
-                            <img src="<?php echo UPLOAD_URL . $post['media_url']; ?>" alt="Post image" class="post-image">
+                            <img src="<?php echo UPLOAD_URL . $post['media_url']; ?>" alt="Post image" class="post-image-full">
                         </div>
                     <?php elseif ($post['media_url'] && $post['media_type'] === 'video'): ?>
                         <div class="mt-3">
@@ -201,22 +201,9 @@ include __DIR__ . '/../includes/header.php';
                             </div>
                             
                             <div class="comment-actions">
-                                <div class="vote-buttons">
-                                    <button class="btn btn-sm comment-vote-btn">
-                                        <i class="fas fa-arrow-up"></i> 
-                                    </button>
-                                    <span>0</span>
-                                    <button class="btn btn-sm comment-vote-btn">
-                                        <i class="fas fa-arrow-down"></i>
-                                    </button>
-                                </div>
+                               
                                 
                                 <div>
-                                    <?php if (isLoggedIn()): ?>
-                                        <button class="btn btn-sm btn-link">
-                                            <i class="fas fa-reply me-1"></i> Reply
-                                        </button>
-                                    <?php endif; ?>
                                     
                                     <?php if (isLoggedIn() && ($comment['user_id'] == $_SESSION['user_id'] || isAdmin() || isModerator())): ?>
                                         <a href="<?php echo SITE_URL; ?>/pages/edit_comment.php?id=<?php echo $comment['comment_id']; ?>" class="btn btn-sm btn-link">

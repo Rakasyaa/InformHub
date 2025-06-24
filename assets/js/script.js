@@ -240,6 +240,75 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// tutroail
+
+let sectionCount = 0;
+function addSection() {
+    const container = document.getElementById('sectionsContainer');
+    const template = document.getElementById('sectionTemplate');
+    const clone = template.content.cloneNode(true);
+    
+    // Update the index for the new section
+    const sectionNumber = container.children.length + 1;
+    clone.querySelector('.section-number').textContent = sectionNumber;
+    
+    // Update the input names with the correct index
+    const inputs = clone.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+        input.name = input.name.replace(/\[\d+\]/, `[${sectionCount}]`);
+    });
+    
+    container.appendChild(clone);
+    sectionCount++;
+}
+
+function removeSection(button) {
+    if (confirm('Apakah Anda yakin ingin menghapus bagian ini?')) {
+        button.closest('.section-item').remove();
+        // Renumber remaining sections
+        const sections = document.querySelectorAll('.section-item');
+        sections.forEach((section, index) => {
+            section.querySelector('.section-number').textContent = index + 1;
+        });
+    }
+}
+
+let exampleCount = 0;
+function addCodeExample() {
+    const container = document.getElementById('codeExamplesContainer');
+    const template = document.getElementById('codeExampleTemplate');
+    const clone = template.content.cloneNode(true);
+    
+    // Update the index for the new example
+    const exampleNumber = container.children.length + 1;
+    clone.querySelector('.example-number').textContent = exampleNumber;
+    
+    // Update the input names with the correct index
+    const inputs = clone.querySelectorAll('input, textarea, select');
+    inputs.forEach(input => {
+        input.name = input.name.replace(/\[\d+\]/, `[${exampleCount}]`);
+    });
+    
+    container.appendChild(clone);
+    exampleCount++;
+}
+
+function removeCodeExample(button) {
+    if (confirm('Apakah Anda yakin ingin menghapus contoh kode ini?')) {
+        button.closest('.code-example-item').remove();
+        // Renumber remaining examples
+        const examples = document.querySelectorAll('.code-example-item');
+        examples.forEach((example, index) => {
+            example.querySelector('.example-number').textContent = index + 1;
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+        addSection();
+        addCodeExample();
+});
+
 // Up-vote and down-vote (no jQuery / Bootstrap)
 document.addEventListener('DOMContentLoaded', function () {
     // Voting for post

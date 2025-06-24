@@ -103,8 +103,8 @@ main {
 
 /* code card */
 .card-code {
-    background-color: #1e1e2f; /* dark background */
-    color: #f8f8f2; /* light text */
+    background-color: #1e1e2f; 
+    color: #f8f8f2;
     font-size: 0.95rem;
     padding: 1rem;
     border-radius: 10px;
@@ -137,6 +137,16 @@ main {
 
 .post-content {
     margin-top: 15px;
+}
+
+.post-image-full {
+    width: auto;
+    height: auto;
+    max-width: 500px;
+    max-height: 500px;
+    border-radius: 5px;
+    margin: 10px 0;
+    display: block;
 }
 
 .post-image {
@@ -350,6 +360,27 @@ main {
     border-radius: 30px; 
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
+/* create tutorial */
+pre textarea {
+    width: 100%;
+    min-height: 150px;
+    border: none;
+    background: transparent;
+    resize: vertical;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.5;
+}
+
+.section-item, .code-example-item {
+    border-left: 4px solid #0d6efd;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
 
 /* ===== Modal Overlay ===== */
 .modal-overlay {

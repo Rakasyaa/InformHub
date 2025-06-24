@@ -19,7 +19,6 @@ require_once __DIR__ . '/functions.php'; // Include functions.php
     <!-- Site URL for JavaScript -->
     <script>
         const siteUrl = '<?php echo SITE_URL; ?>';
-        
     </script>
     <!-- Icon -->
     <link rel="shortcut icon" href="<?php echo SITE_URL; ?>/assets/img/icon.jpg" type="image/x-icon">

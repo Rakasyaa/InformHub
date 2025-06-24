@@ -75,7 +75,7 @@ include __DIR__ . '/../includes/header.php';
                     <div class="mb-3">
                         <label for="content" class="form-label">Content</label>
                         <textarea class="form-control" id="post-content" name="content" rows="6" required maxlength="5000"></textarea>
-                        <div class="form-text" id="char-count">5000 characters remaining</div>
+                        <div class="form-text" id="char-count">5000 characters</div>
                     </div>
                     
                     <div class="mb-3">
