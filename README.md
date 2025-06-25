@@ -140,7 +140,6 @@ InformHub/
 │   ├── dashboard/    # Halaman dashboard
 │   └── ...
 ├── uploads/          # File yang diunggah pengguna
-├── .htaccess         # Konfigurasi server
 ├── index.php         # Halaman utama
 └── README.md         # Dokumentasi ini
 ```
@@ -157,7 +156,7 @@ Kami sangat menerima kontribusi! Berikut cara Anda bisa ikut berkontribusi:
 
 ## 📝 Lisensi
 
-Proyek ini dilisensikan di bawah [MIT License](LICENSE).
+Proyek ini dilisensikan di bawah [Tekni Infor UNRAM](LICENSE).
 
 ## 📞 Kontak
 
