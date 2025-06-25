@@ -109,13 +109,12 @@ Jika belum punya, unduh dan instal [XAMPP](https://www.apachefriends.org/index.h
 
 ### Frontend
 - HTML5, CSS3, JavaScript
-- Bootstrap 5.2
+- framework Bootstrap 5.2
 - Font Awesome Icons
 
 ### Backend
 - PHP 7.4+
 - MySQL 8.0+
-- PDO Extension
 
 ### Tools & Lainnya
 - XAMPP/Laragon
